@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using Serilog;
+using System.IO;
 using System.Linq;
 using System.Threading;
 
@@ -31,7 +33,7 @@ namespace App
                     }
                 }
                 catch { }
-                
+
                 var userMgr = (UserManager<AppUser>)services.GetRequiredService(typeof(UserManager<AppUser>));
                 if (!userMgr.Users.Any())
                 {
@@ -50,7 +52,7 @@ namespace App
                         services.GetRequiredService<IStorageService>().Reset();
                     }
                     catch { }
-                    
+
                     AppData.Seed(context);
                 }
             }
@@ -58,8 +60,19 @@ namespace App
             host.Run();
         }
 
-        public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
-            WebHost.CreateDefaultBuilder(args).UseStartup<Startup>();
+        public static IWebHostBuilder CreateWebHostBuilder(string[] args)
+        {
+            dynamic type = (new Program()).GetType();
+            string contentRoot = Path.GetDirectoryName(type.Assembly.Location);
+#if DEBUG
+            contentRoot = Directory.GetCurrentDirectory();
+#endif
+            var webRoot = Path.Combine(contentRoot, "wwwroot");
+            return WebHost.CreateDefaultBuilder(args)
+              .UseContentRoot(contentRoot)  // set content root
+              .UseWebRoot(webRoot)          // set web root
+              .UseStartup<Startup>();
+        }
 
         public static void Shutdown()
         {
