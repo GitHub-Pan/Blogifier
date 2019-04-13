@@ -33,6 +33,19 @@
     <Content Remove="wwwroot\admin\package.json" />
     <Content Remove="wwwroot\admin\package-lock.json" />
   </ItemGroup>
+ 
+  <ItemGroup>
+    <EmbeddedResource Remove="Views\Themes\Custom\Shared\_Head.cshtml" />
+  </ItemGroup>
+ 
+  <ItemGroup>
+    <Content Update="Views\Themes\Custom\Shared\_Head.cshtml">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Views\Themes\Custom\Shared\_Header.cshtml">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+  </ItemGroup>
 
   <Target Name="PostBuild" AfterTargets="PostBuildEvent">
     <PropertyGroup>
