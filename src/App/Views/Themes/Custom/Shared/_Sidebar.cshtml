@@ -1,0 +1,23 @@
+﻿
+<div class="card my-4">
+    <h5 class="card-header">微信公众号</h5>
+    <div class="card-body">
+        <img src="~/themes/custom/img/qrcode.jpg"  />
+    </div>
+</div>
+<div class="card my-4">
+    <h5 class="card-header">动态</h5>
+    <div class="card-body">
+        @await Component.InvokeAsync("HtmlBlock", new { theme = "Custom", widget = "Sidebar" })
+    </div>
+</div>
+
+<div class="card my-4">
+    <h5 class="card-header">最新博客</h5>
+    @await Component.InvokeAsync("PostList", new { theme = "Custom", widget = "Post List" })
+</div>
+
+<div class="card my-4">
+    <h5 class="card-header">标签</h5>
+    @await Component.InvokeAsync("Categories", new { theme = "Custom", widget = "Categories" })
+</div>

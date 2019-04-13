@@ -169,7 +169,19 @@ namespace Core.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("HtmlWidtes");
+                    b.ToTable("HtmlWidgets");
+                });
+
+            modelBuilder.Entity("Core.Data.Newsletter", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Email");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Newsletters");
                 });
 
             modelBuilder.Entity("Core.Data.Notification", b =>
