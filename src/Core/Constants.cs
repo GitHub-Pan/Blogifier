@@ -13,6 +13,5 @@
         public static string BlogTheme = "blog-theme";
         public static string BlogLogo = "blog-logo";
         public static string BlogCover = "blog-cover";
-        public static string Culture = "culture";
     }
 }
