@@ -1,0 +1,1 @@
+docker build -f .\Dockerfile_windows -t blog_v1 .

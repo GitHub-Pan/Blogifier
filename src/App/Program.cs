@@ -50,7 +50,7 @@ namespace App
                         services.GetRequiredService<IStorageService>().Reset();
                     }
                     catch { }
-                    
+
                     AppData.Seed(context);
                 }
             }
